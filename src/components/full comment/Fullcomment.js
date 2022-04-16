@@ -6,16 +6,16 @@ const Fullcomment = ({commentId}) => {
     const[comment,setComment]=useState(null);
     useEffect(()=>{
         axios
-        .get(`https://jsonplaceholder.typicode.com/comments/${commentId}`)
-        .then((res)=>console.log(res))
+        .get(`https://jsonplaceholder.typicode.com/comments/${commentId}`)        
+        .then((res)=>console.log(res.data))        
         .catch();        
-    },[commentId]);
+        },[commentId]);
    
     
-    return ( 
+        return ( 
         <div className='fullcomment' >
-        <p>name</p>
-        <p>mail</p>
+        <p>name </p>
+        <p>mail </p>
         <p>body</p>
         </div>
         

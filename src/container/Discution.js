@@ -14,7 +14,7 @@ const Discution = () => {
     
     useEffect(()=>{
         axios.get('https://jsonplaceholder.typicode.com/comments').then((response)=>{
-            setComments(response.data.slice(0,4));
+            setComments(response.data.slice(0,3));
         }).catch((eroor)=>{});
     
     },[])
