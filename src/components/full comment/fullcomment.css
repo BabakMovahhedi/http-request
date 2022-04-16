@@ -1,0 +1,11 @@
+.fullcomment{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: rgb(10, 194, 211);
+    width: 800px;
+    height: 200px;
+    border-radius: 5px;
+    margin-top: 10px;
+}

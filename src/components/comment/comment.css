@@ -1,0 +1,11 @@
+.comment{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: rgb(10, 194, 211);
+    width: 300px;
+    height: 300px;
+    border-radius: 5px;
+    
+}
