@@ -1,25 +1,38 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
-import fullcomment from './fullcomment.css';
+import axios from 'axios';
+import  './fullcomment.css';
 const Fullcomment = ({commentId}) => { 
-    console.log(commentId);   
+       
     const[comment,setComment]=useState(null);
     useEffect(()=>{
-        axios
-        .get(`https://jsonplaceholder.typicode.com/comments/${commentId}`)        
-        .then((res)=>console.log(res.data))        
-        .catch();        
+        if(commentId){
+            
+            axios
+            .get(`https://jsonplaceholder.typicode.com/comments/${commentId}`)        
+            .then((res)=>setComment(res.data))      
+            .catch();        
+        }
         },[commentId]);
-   
-    
-        return ( 
-        <div className='fullcomment' >
-        <p>name </p>
-        <p>mail </p>
-        <p>body</p>
+
+        let commentdetail= <p>please select id </p>;
+
+        if (commentId) commentdetail =<p>loading...</p>;
+
+        if (comment){commentdetail=(
+            <div className='fullcomment' >
+        <p>name:{comment.name} </p>
+        <p>mail:{comment.email} </p>
+        <p>body:{comment.body} </p>
         </div>
-        
-     );
-    }
+        );
+        }
+        return commentdetail;
+    };
  
 export default Fullcomment;
+    
+    
+    
+    
+
+    
