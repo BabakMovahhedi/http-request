@@ -8,11 +8,16 @@ const Fullcomment = ({commentId}) => {
         if(commentId){
             
             axios
-            .get(`https://jsonplaceholder.typicode.com/comments/${commentId}`)        
+            .get(`http://localhost:3004/comments/${commentId}`)        
             .then((res)=>setComment(res.data))      
             .catch();        
         }
         },[commentId]);
+        const DeleteHandler=()=>{
+            axios.delete(`http://localhost:3004/comments/${commentId}`)
+            .then()
+            .catch();
+        };
 
         let commentdetail= <p>please select id </p>;
 
@@ -21,8 +26,9 @@ const Fullcomment = ({commentId}) => {
         if (comment){commentdetail=(
             <div className='fullcomment' >
         <p>name:{comment.name} </p>
-        <p>mail:{comment.email} </p>
+        <p>email:{comment.email} </p>
         <p>body:{comment.body} </p>
+        <button onClick={DeleteHandler}>Delete</button>
         </div>
         );
         }
