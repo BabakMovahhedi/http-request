@@ -1,9 +1,10 @@
 import Fullcomment from "../components/full comment/Fullcomment";
 import Comment from "../components/comment/Comment";
 import NewComment from "../components/add new comment/NewComment";
-import  './discution.css';
-import axios from "axios";
 import { useEffect, useState } from "react";
+import { gethttp } from "../components/services/getAllservices";
+import { posthttp } from "../components/services/postAllservices";
+import  './discution.css';
 
 
 
@@ -13,20 +14,23 @@ const Discution = () => {
     const[error,setError]=useState(false);
         
     useEffect(()=>{
-        axios.get('http://localhost:3004/comments').then((response)=>{
+        gethttp()
+        .then((response)=>{
             setComments(response.data);
         }).catch((error)=>{setError(true)});
     
     },[])
+
     const selectHandler=(id)=>{
         setSelectedId(id);
             };
     const postHandler=(comment)=>{
-                axios.post('http://localhost:3004/comments',{...comment,wife:'shima', })
-                .then((res)=>axios.get('http://localhost:3004/comments'))
+               posthttp({...comment})
+                .then((res)=>gethttp)
                 .then((res)=>setComments(res.data) )
                 .catch();
         };
+
     const renderComments=()=>{
         let rendervalue=<p>loading...</p>
         if(error){rendervalue=<p>fetch data failed</p>}

@@ -1,21 +1,24 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import  './fullcomment.css';
+import {deletehttp} from '../services/deleteAllservices';
+import {gethttp} from '../services/getAllservices';
+import {getone} from '../services/getOneServices';
+
+
 const Fullcomment = ({commentId,setComments}) => { 
        
     const[comment,setComment]=useState(null);
     useEffect(()=>{
-        if(commentId){
-            
-            axios
-            .get(`http://localhost:3004/comments/${commentId}`)        
+        if(commentId){         
+            getone(commentId)        
             .then((res)=>setComment(res.data))      
             .catch();        
         }
         },[commentId]);
         const DeleteHandler=()=>{  
-            axios.delete(`http://localhost:3004/comments/${commentId}`)
-            .then((res)=>axios.get('http://localhost:3004/comments')
+            deletehttp(commentId)
+            .then((res)=>gethttp()
             .then((res)=>setComments(res.data))
             .catch());
           }      

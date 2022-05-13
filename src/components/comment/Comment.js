@@ -4,7 +4,7 @@ const Comment = ({name,email,onClick}) => {
     return ( 
         <div className="comment" onClick={onClick}>
         <p>name:{name} </p>
-        <p>mail:{email} </p>   
+        <p>email:{email} </p>   
         </div>
         
      )
